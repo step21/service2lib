@@ -1,12 +1,13 @@
 <?php
 
-define('CSVFILE', 'db/updates.csv');
 
-
-function get_file_csv ( $file = _CSVFILE_ )
+function get_file_csv ( $file )
 {
-    if ( $digfile == FALSE )
+    if ( ! is_readable($file) )
+    {
+        log("File $file is not readable");
         return FALSE;
+    }
     $file_array = array();
     $row = 1;
     if (($handle = fopen($file, "r")) !== FALSE) {
@@ -15,32 +16,37 @@ function get_file_csv ( $file = _CSVFILE_ )
         }
         fclose($handle);
 
-        // print_r($file_array);
         return $file_array;
     } else {
-        log("Can't open the file handle.");
+        log("Can't open the file handle $file.");
         return FALSE;
     }
+    return true;
 }
 
-function save_file_csv ($digs, $file = CSVFILE, 
+function save_file_csv ($datalist, $file, 
                         $rw_flag = 'w')
 {
 /*
-$list = array (
-    array('aaa', 'bbb', 'ccc', 'dddd'),
+$list = 
+    array (
+        array('aaa', 'bbb', 'ccc', 'dddd'),
         array('123', '456', '789'),
-            array('"aaa"', '"bbb"')
-            );
+        array('"aaa"', '"bbb"')
+    );
 */
+    $fp = fopen($file, $rw_flag);
 
-    $fp = fopen($file_path, $rw_flag);
+    if ( false == $fp )
+        return false;
 
-    foreach ($updates as $fields) {
+    foreach ($datalist as $fields) 
+    {
         fputcsv($fp, $fields);
     }
 
     fclose($fp);
+    return true;
 }
 
 
