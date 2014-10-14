@@ -17,8 +17,11 @@ $configs = [
     "_from"         =>  '',
     "_replyto"      =>  '',
     "_next"         =>  '',
+    "_header"       =>  '',
     "_footer"       =>  '',
     "_id"           =>  '',
+    "_style"        =>  '',
+    "_banner"       =>  '',
     "_time"         =>  '', 
     "_subject"      =>  'Generic Form',
     /* "_cc"           =>  '', */
@@ -35,6 +38,12 @@ $requests     = $_REQUEST;
 $input_errors = $configs;
 foreach ($input_errors as $key => $val)
     $input_errors[$key] = '';
+
+
+// $num_allowed_actions = 1;
+define('_NUM_ALLOWED_ACTIONS_', 1);
+// FOR NOW ONLY ALLOWING ONE ACTION TO BE PRINTED ON PAGE
+$actions_printed = 0;
 
 $required_configs = [
     /* "_from", */
@@ -62,7 +71,9 @@ foreach($requests as $key => $val)
                     get_generic_error($key,$val,"Its not a valid e-mail address.");
             unset($requests[$key]);
             break;
+        case '_from':
         case '_next':
+            /*
             if ( is_url($val) )
                 $configs[$key] = $val;
             else
@@ -70,7 +81,12 @@ foreach($requests as $key => $val)
                     get_generic_error($key, $val, "Its not a valid url address.");
             unset($requests[$key]);
             break;
+            */
+        case '_style':
+        case '_banner':
+        case '_header':
         case '_footer':
+        case '_ip':
         case '_id':
         case '_time':
         case '_subject':
