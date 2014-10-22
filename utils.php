@@ -1,4 +1,13 @@
 <?php
+function dumper ( $some_var, $msg = '' )
+{
+    echo "<pre>\n";
+    if ( !empty($msg) )
+        echo "$msg\n";
+    var_dump( $some_var );
+    echo "</pre>\n";
+}
+
 function is_email ($email)
 {
     return filter_var($email, FILTER_VALIDATE_EMAIL) && 
@@ -69,26 +78,55 @@ function is_ip_allowed ()
 
 }
 
-function is_url_real ()
+/**
+ * check if a url is real, and this also NEEDS an internet connection.
+ */
+function is_url_real ($url_to_shorten)
 {
+    $test_flag = true;
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url_to_shorten);
     curl_setopt($ch,  CURLOPT_RETURNTRANSFER, TRUE);
     $response = curl_exec($ch);
-    curl_close($handle);
-    if(curl_getinfo($ch, CURLINFO_HTTP_CODE) == '404')
+    if( curl_getinfo($ch, CURLINFO_HTTP_CODE) == '404' ||
+        FALSE == $response )
     {
-        die('Not a valid URL');
+        dumper($response);
+        $test_flag = false;
     }
+    curl_close($ch);
+    return $test_flag;
 }
 
-function get_short_url ($key)
+function get_short_url_path ($key)
 {
 
     return ( empty($_SERVER['HTTPS']) ? 'http://' : 'https://' ) . 
                 $_SERVER['SERVER_NAME'] . 
                 dirname( $_SERVER['SCRIPT_NAME'] ) . '/' . $key;
 
+}
+
+function get_short_url ($url, $service = 'http://service.localhost/u2s' )
+{
+    $test_flag = true;
+    $ready_url = $service . '/set/?l=' . urlencode($url);
+    // dumper($ready_url);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $ready_url);
+    curl_setopt($ch,  CURLOPT_RETURNTRANSFER, TRUE);
+    $response = curl_exec($ch);
+    if( curl_getinfo($ch, CURLINFO_HTTP_CODE) == '404' ||
+        FALSE == $response )
+    {
+        $test_flag = false;
+        curl_close($ch);
+        return $test_flag;
+    }
+    curl_close($ch);
+    return $response;
+    
 }
 
 ?>

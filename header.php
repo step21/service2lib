@@ -5,14 +5,19 @@ echo <<<END
 <head>
 END;
 echo '    <title>' . $configs['_subject'] . '</title>';
-echo <<<END
+/**
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+ */
+echo <<<END
+        <link href="/lib/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet" />
+	    <link href="/lib/css/prettify.css" rel="stylesheet" />
+	    <link href="/lib/css/style.css" rel="stylesheet" />
 END;
 if ( $configs['_style'] )
     echo '<style>' . $configs['_style'] . "</style>\n";
 ?>
 </head>
-<body style="margin: 30px;">
+<body>
 <?php
 if ( $configs['_header'] )
     echo $configs['_header'] . "\n";
