@@ -108,7 +108,8 @@ function get_short_url_path ($key)
 
 }
 
-function get_short_url ($url, $service = 'http://service.localhost/u2s' )
+// no defaul: $service = 'http://service.localhost/u2s'
+function get_short_url ($url, $service)
 {
     $test_flag = true;
     $ready_url = $service . '/set/?l=' . urlencode($url);

@@ -9,11 +9,12 @@ $configs = [
     "_next"         =>  '',
     "_header"       =>  '',
     "_footer"       =>  '',
-    "_id"           =>  '',
+    "_id"           =>  'default',
     "_style"        =>  '',
     "_banner"       =>  '',
     "_time"         =>  '', 
-    "_subject"      =>  'Generic Form',
+    "_subject"      =>  '',
+    /* "_subject"      =>  'Generic Form', */
     /* "_cc"           =>  '', */
     "_success"      =>  'Thanks for submitting your form.',
     "_body"         =>  'Please fill out the following form.',
@@ -21,7 +22,8 @@ $configs = [
     "_link"         =>  '',
     "_linkname"     =>  '',
     /* "_action"       =>  'http://service.localhost/query2email/' */
-    "_action"       =>  '#'
+    "_action"       =>  '#',
+    "_u2s"          => 'http://service.fabricatorz.com'
 ];
 
 $requests     = $_REQUEST;
@@ -85,6 +87,7 @@ foreach($requests as $key => $val)
         case '_submit':
         case '_link':
         case '_linkname':
+        case '_u2s':
         case '_action':
             $configs[$key] = $val;
             unset($requests[$key]);
@@ -103,7 +106,8 @@ foreach($requests as $key => $val)
     }
 }
 
-if ( empty($_REQUEST) || count($inputs) == 0 )
+// tricky,because if we want to view our list, we need to pass something
+if ( empty($_REQUEST) || count($inputs) == 0 && !isset($_REQUEST['_id']) )
 {
     echo "<h2>Nothing to see...@TODO add docs here\n</h2>";
     exit;
@@ -120,7 +124,14 @@ foreach ($required_configs as $config)
     }
 }
 
-
+// @TODO clean up these temporary variables, and just use global array
+$date_style = 'Y-m-d h:i:s A';
+$configs['_ip'] = $_SERVER["REMOTE_ADDR"];;
+$now = '';
+if ( empty($configs['_time']) )
+    $now = time();
+else
+    $now = $configs['_time'];
 
 
 ?>

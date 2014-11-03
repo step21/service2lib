@@ -1,6 +1,5 @@
 <?php
 
-
 function get_file_csv ( $file )
 {
     if ( ! is_readable($file) )
@@ -119,8 +118,5 @@ function get_counter ($ctfile)
 
 
 }
-
-
-
 
 ?>

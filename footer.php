@@ -30,7 +30,7 @@ if ( $configs['_footer'] )
 
     <!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
     <script src="/lib/bootstrap-3.2.0/js/bootstrap.min.js"></script> 
-	<script src="/lib/js/prettify.js"></script>
+    <script src="/lib/js/prettify.js"></script>
     <script src="/lib/js/service.js"></script>
 </body>
 </html>
