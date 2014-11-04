@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set('UTC');
 
+
 include_once 'utils.php';
 
 $configs = array(
@@ -25,6 +26,10 @@ $configs = array(
     "_action"       =>  '#',
     "_u2s"          => 'http://service.fabricatorz.com/u2s'
 );
+
+// set our defaults, override ALL
+if ( file_exists( 'config.php' ) )
+    include_once 'config.php';
 
 $requests     = $_REQUEST;
 $input_errors = $configs;
