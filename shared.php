@@ -27,8 +27,6 @@ $configs = array(
 if ( file_exists( 'config.php' ) )
     include_once 'config.php';
 
-print_r($configs);
-
 $requests     = $_REQUEST;
 $input_errors = $configs;
 foreach ($input_errors as $key => $val)
