@@ -3,10 +3,12 @@ if ( _NUM_ALLOWED_ACTIONS_ > $actions_printed )
 {
     $next_action = '';
     if ( is_array( $configs['_action'] ) )
+    {
         $next_action = array_shift($configs['_action']);
-    else if ( !empty( $configs['_action'] &&
+    }
+    else if ( !empty( $configs['_action'] ) &&
             $configs['_action'] != '#' &&
-            $configs['_action'] != '%23' )  )
+            $configs['_action'] != '%23'   )
     {
         $next_action = $configs['_action'];
     }
