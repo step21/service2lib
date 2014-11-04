@@ -1,31 +1,35 @@
 <?php
 date_default_timezone_set('UTC');
+// ini_set('display_startup_errors',1);
+// ini_set('display_errors',1);
+// error_reporting(-1);
+
+// if ( ini_get('display_errors') == -1 )
 
 
 include_once 'utils.php';
-$configs = array(
-    "_from"         =>  '',
-    "_replyto"      =>  '',
-    "_next"         =>  '',
-    "_header"       =>  '',
-    "_footer"       =>  '',
-    "_id"           =>  'default',
-    "_style"        =>  '',
-    "_banner"       =>  '',
-    "_time"         =>  '', 
-    "_subject"      =>  '',
-    "_success"      =>  'Thanks for submitting your form.',
-    "_body"         =>  'Please fill out the following form.',
-    "_submit"       =>  'Submit',
-    "_link"         =>  '',
-    "_linkname"     =>  '',
-    "_action"       =>  '#',
-    "_u2s"          => 'http://service.fabricatorz.com/u2s'
-);
-
-// set our defaults, override ALL
-if ( file_exists( 'config.php' ) )
-    include_once 'config.php';
+if ( ! isset($configs) )
+{
+    $configs = array(
+        "_from"         =>  '',
+        "_replyto"      =>  '',
+        "_next"         =>  '',
+        "_header"       =>  '',
+        "_footer"       =>  '',
+        "_id"           =>  'default',
+        "_style"        =>  '',
+        "_banner"       =>  '',
+        "_time"         =>  '', 
+        "_subject"      =>  '',
+        "_success"      =>  'Thanks for submitting your form.',
+        "_body"         =>  'Please fill out the following form.',
+        "_submit"       =>  'Submit',
+        "_link"         =>  '',
+        "_linkname"     =>  '',
+        "_action"       =>  '#',
+        "_u2s"          => 'http://service.fabricatorz.com/u2s'
+    );
+}
 
 $requests     = $_REQUEST;
 $input_errors = $configs;
