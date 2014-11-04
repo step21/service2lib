@@ -3,7 +3,7 @@ date_default_timezone_set('UTC');
 
 include_once 'utils.php';
 
-$configs = [
+$configs = array(
     "_from"         =>  '',
     "_replyto"      =>  '',
     "_next"         =>  '',
@@ -23,8 +23,8 @@ $configs = [
     "_linkname"     =>  '',
     /* "_action"       =>  'http://service.localhost/query2email/' */
     "_action"       =>  '#',
-    "_u2s"          => 'http://service.fabricatorz.com'
-];
+    "_u2s"          => 'http://service.fabricatorz.com/u2s'
+);
 
 $requests     = $_REQUEST;
 $input_errors = $configs;
@@ -37,10 +37,10 @@ define('_NUM_ALLOWED_ACTIONS_', 1);
 // FOR NOW ONLY ALLOWING ONE ACTION TO BE PRINTED ON PAGE
 $actions_printed = 0;
 
-$required_configs = [
+$required_configs = array(
     /* "_from", */
     "_replyto"
-];
+);
 
 $inputs = array();
 
