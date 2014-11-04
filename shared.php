@@ -3,7 +3,6 @@ date_default_timezone_set('UTC');
 
 
 include_once 'utils.php';
-
 $configs = array(
     "_from"         =>  '',
     "_replyto"      =>  '',
@@ -15,14 +14,11 @@ $configs = array(
     "_banner"       =>  '',
     "_time"         =>  '', 
     "_subject"      =>  '',
-    /* "_subject"      =>  'Generic Form', */
-    /* "_cc"           =>  '', */
     "_success"      =>  'Thanks for submitting your form.',
     "_body"         =>  'Please fill out the following form.',
     "_submit"       =>  'Submit',
     "_link"         =>  '',
     "_linkname"     =>  '',
-    /* "_action"       =>  'http://service.localhost/query2email/' */
     "_action"       =>  '#',
     "_u2s"          => 'http://service.fabricatorz.com/u2s'
 );
@@ -30,6 +26,8 @@ $configs = array(
 // set our defaults, override ALL
 if ( file_exists( 'config.php' ) )
     include_once 'config.php';
+
+print_r($configs);
 
 $requests     = $_REQUEST;
 $input_errors = $configs;
