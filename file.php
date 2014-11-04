@@ -4,7 +4,7 @@ function get_file_csv ( $file )
 {
     if ( ! is_readable($file) )
     {
-        log("File $file is not readable");
+        error_log("File $file is not readable");
         return FALSE;
     }
     $file_array = array();
@@ -17,7 +17,7 @@ function get_file_csv ( $file )
 
         return $file_array;
     } else {
-        log("Can't open the file handle $file.");
+        error_log("Can't open the file handle $file.");
         return FALSE;
     }
     return true;

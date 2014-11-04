@@ -14,6 +14,8 @@ function get_updates_table ( $updates, $headers = '', $print_headers = true )
     global $date_style;
     
     // assume headers is empty
+    if ( ! is_array($updates) )
+        return false;
 
     $buffer = '';
     $updates = array_reverse($updates);
