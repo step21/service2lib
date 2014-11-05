@@ -99,6 +99,21 @@ function is_url_real ($url_to_shorten)
     return $test_flag;
 }
 
+function encodeURI($uri)
+{
+    return preg_replace_callback("{[^0-9a-z_.!~*'();,/?:@&=+$#]}i",
+        function ($m) 
+    {
+        return sprintf('%%%02X', ord($m[0]));
+    }, $uri);
+}
+
+function cleanVal ($val)
+{
+    // return encodeURI(str_replace(PHP_EOL, ', ', trim($val)));
+    return encodeURI($val);
+}
+
 function get_short_url_path ($key)
 {
 
