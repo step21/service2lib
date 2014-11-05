@@ -56,6 +56,9 @@ function get_generic_error ($key, $value, $msg)
 
 foreach($requests as $key => $val)
 {
+    if ( FALSE !== strpos($key, 'wordpress') )
+        continue;
+
     // unclear if needed
     // $val = urldecode($val);
     switch($key)
