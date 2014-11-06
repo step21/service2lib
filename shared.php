@@ -27,6 +27,7 @@ if ( ! isset($configs) )
         "_link"         =>  '',
         "_linkname"     =>  '',
         "_action"       =>  '#',
+        "_processurl"   =>  '',
         "_u2s"          => 'http://service.fabricatorz.com/u2s'
     );
 }
@@ -96,6 +97,7 @@ foreach($requests as $key => $val)
         case '_link':
         case '_linkname':
         case '_u2s':
+        case '_processurl':
         case '_action':
             $configs[$key] = $val;
             unset($requests[$key]);
